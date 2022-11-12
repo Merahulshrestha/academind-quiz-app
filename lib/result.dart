@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 class Result extends StatelessWidget {
   final int resultScore;
   final VoidCallback resetHandler;
-  const Result({super.key, required this.resultScore, required this.resetHandler});
+  const Result(
+      {super.key, required this.resultScore, required this.resetHandler});
 
   String get resultPhrase {
     var resultText = 'You did it';
-    if (resultScore <= 8){
+    if (resultScore <= 8) {
       resultText = 'You sre awesome and innocent';
-    } else if (resultScore <= 12 ){
+    } else if (resultScore <= 12) {
       resultText = 'You are .... strange?!';
-    } else{
+    } else {
       resultText = 'You are so bad!';
     }
     return resultText;
@@ -23,15 +24,23 @@ class Result extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Center(
-              child: Text('You did it',
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold
-              ),
-              textAlign: TextAlign.center, ),
-            ),
-            TextButton(child: Text('Restart Quiz!'),
-          onPressed: resetHandler, )
+          child: Text(
+            'You did it',
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        const SizedBox(height: 8.0),
+        Text(
+          "Your score is: $resultScore",
+          style: const TextStyle(
+              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black45),
+        ),
+        const SizedBox(height: 8.0),
+        TextButton(
+          child: Text('Restart Quiz!'),
+          onPressed: resetHandler,
+        )
       ],
     );
   }

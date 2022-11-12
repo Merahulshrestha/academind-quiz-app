@@ -20,10 +20,17 @@ class Quiz extends StatelessWidget {
         Question(questionText: questions[questionIndex]['question'].toString()),
         // if there was no .tostring because dart would think the value might be null but when we specified .tostring, we are telling dart that value will return string
         // we are using spread operator, we don't need list inside list
-        ...(questions[questionIndex]['answer'] as List<Map<String, Object>>)
+
+        ...(questions[questionIndex]['answer'] as List<
+                Map<String,
+                    Object>>) // changed List<String to List<Map<String, Object>
             .map((answer) {
           // we pass function inside map
-          return Answer(selectHandler: () => answerQuestion, answer: answer);
+          return Answer(
+            selectHandler: (int? score) => answerQuestion(
+                score), // changed from () => answerQuestion() to (int? a) => answerQuestion(a) this function sends score to _answerQuestion function at main.dart file
+            answer: answer,
+          );
         }).toList(),
       ],
     );
