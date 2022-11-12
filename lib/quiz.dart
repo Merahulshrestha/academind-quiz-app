@@ -14,14 +14,15 @@ class Quiz extends StatelessWidget {
           children: [
             //We created custom widget called question
              Question(
-              questionText: questions[questionIndex]['questionText'].toString()),
+              questionText: questions[questionIndex]['questionText'] as  String),
              // if there was no .tostring because dart would think the value might be null but when we specified .tostring, we are telling dart that value will return string
              // we are using spread operator, we don't need list inside list
             ...(questions[questionIndex]['answer']as List<String>).map((answer){
               // we pass function inside map
-              return Answer(selectHandler: () => answerQuestion, answer: answer);
+              return Answer(selectHandler: () => answerQuestion, answer: answer.toString());
             }).toList(),
           ],
         );
+
   }
 }
