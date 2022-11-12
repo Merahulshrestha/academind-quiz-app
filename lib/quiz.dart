@@ -17,15 +17,13 @@ class Quiz extends StatelessWidget {
     return Column(
       children: [
         //We created custom widget called question
-        Question(
-            questionText: questions[questionIndex]['questionText'].toString()),
+        Question(questionText: questions[questionIndex]['question'].toString()),
         // if there was no .tostring because dart would think the value might be null but when we specified .tostring, we are telling dart that value will return string
         // we are using spread operator, we don't need list inside list
         ...(questions[questionIndex]['answer'] as List<Map<String, Object>>)
             .map((answer) {
           // we pass function inside map
-          return Answer(
-              selectHandler: () => answerQuestion, answer: answer.toString());
+          return Answer(selectHandler: () => answerQuestion, answer: answer);
         }).toList(),
       ],
     );
